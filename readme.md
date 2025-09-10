@@ -23,7 +23,7 @@
 1. Clone the Repository:
 
 ```bash
-    git  clone <repository-url>
+    git  clone https://github.com/rbhagat32/scalable-chat-app.git
 ```
 
 2. Install Dependencies:
