@@ -60,6 +60,7 @@
 ```
 
 6. Start the Backend & Frontend Servers:
+   _Kafka will crash for first time because it will create MESSAGES topic. So, force stop the process and start Dev servers again._
 
 ```bash
     npm run dev
