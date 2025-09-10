@@ -59,23 +59,6 @@
     npx prisma migrate dev
 ```
 
-5. PostgreSQL Database Migration:
-
-```bash
-    cd backend
-    npx prisma migrate dev
-```
-
-6. Start the Backend & Frontend Servers:
-
-````bash
-    npm run dev
-
-```bash
-    cd backend
-    npx prisma migrate dev
-````
-
 6. Start the Backend & Frontend Servers:
 
 ```bash
