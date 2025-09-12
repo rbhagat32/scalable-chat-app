@@ -2,10 +2,20 @@
 
 import { useSocket } from "@/context/SocketProvider";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Page() {
-  const { sendMessage, messages } = useSocket();
+  const { sendMessage, messages, loading } = useSocket();
   const [message, setMessage] = useState<string>("");
+
+  const handleSendMessage = () => {
+    if (message.trim() === "") {
+      toast.error("Cannot send empty message !");
+    } else {
+      sendMessage(message);
+      setMessage("");
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-black p-4">
@@ -18,16 +28,20 @@ export default function Page() {
 
         {/* Chat Messages */}
         <div className="scrollbar-hide mb-18 flex-1 space-y-3 overflow-y-auto p-4">
-          {messages.map((msg, index) => {
-            return (
-              <div
-                key={index}
-                className="mx-auto w-[280px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
-              >
-                <p className="text-sm break-words">{msg}</p>
-              </div>
-            );
-          })}
+          {loading ? (
+            <SkeletonLoader />
+          ) : (
+            messages.map((msg, index) => {
+              return (
+                <div
+                  key={index}
+                  className="mx-auto w-[280px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
+                >
+                  <p className="text-sm break-words">{msg}</p>
+                </div>
+              );
+            })
+          )}
         </div>
 
         {/* Input Box */}
@@ -40,19 +54,11 @@ export default function Page() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && message.trim() !== "") {
-                  sendMessage(message);
-                  setMessage("");
-                }
+                if (e.key === "Enter") handleSendMessage();
               }}
             />
             <button
-              onClick={() => {
-                if (message.trim() !== "") {
-                  sendMessage(message);
-                  setMessage("");
-                }
-              }}
+              onClick={() => handleSendMessage()}
               className="cursor-pointer rounded-xl bg-gray-800 p-2.5 text-gray-200 shadow-lg transition-all duration-200 hover:bg-gray-700 hover:shadow-xl active:bg-gray-600"
             >
               <svg
@@ -75,3 +81,14 @@ export default function Page() {
     </div>
   );
 }
+
+const SkeletonLoader = () => {
+  return [...Array(11)].map((_, index) => {
+    return (
+      <div
+        key={index}
+        className="mx-auto h-9 w-[280px] animate-pulse rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
+      />
+    );
+  });
+};

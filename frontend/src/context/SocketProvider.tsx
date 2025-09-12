@@ -19,6 +19,7 @@ interface SocketProviderProps {
 interface ISocketContext {
   sendMessage: (msg: string) => void;
   messages: string[];
+  loading: boolean;
 }
 
 interface IMessage {
@@ -38,6 +39,7 @@ const useSocket = () => {
 const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const sendMessage: ISocketContext["sendMessage"] = useCallback(
     (msg: string) => {
@@ -70,14 +72,16 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
+        setLoading(true);
         const res = await fetch(`${SERVER_URL}/api/messages`);
         if (!res.ok) throw new Error("Failed to Fetch Messages !");
 
         const data: IMessage[] = await res.json();
-
         setMessages(data.map((msg) => msg.content));
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -85,7 +89,7 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <SocketContext.Provider value={{ sendMessage, messages }}>
+    <SocketContext.Provider value={{ sendMessage, messages, loading }}>
       {children}
     </SocketContext.Provider>
   );
