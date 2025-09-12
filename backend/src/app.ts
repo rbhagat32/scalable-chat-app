@@ -15,7 +15,7 @@ function init() {
   StartMessageProducer();
 
   const PORT = process.env.PORT || 4000;
-  httpServer.listen(PORT, async () => {
+  httpServer.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 
