@@ -1,0 +1,21 @@
+import type { Request, Response, NextFunction } from "express";
+
+export class ErrorHandler extends Error {
+  constructor(public statusCode: number, public message: string) {
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
+
+export const ErrorHandlerMiddleware = (
+  err: ErrorHandler,
+  _req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
+  err.statusCode ||= 500;
+  err.message ||= "Internal Server Error";
+
+  console.log(err);
+  return res.status(err.statusCode).json({ message: err.message });
+};

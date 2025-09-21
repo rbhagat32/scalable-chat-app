@@ -1,7 +1,7 @@
 import Redis from "ioredis";
-import dotenv from "dotenv";
+import { configDotenv } from "dotenv";
 
-dotenv.config();
+configDotenv({ quiet: true });
 
 const pub = new Redis({
   username: process.env.REDIS_USERNAME,

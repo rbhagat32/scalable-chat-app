@@ -1,25 +1,30 @@
-import http from "http";
-import dotenv from "dotenv";
-import { SetupServer } from "@/config/http-server.js";
-import { SocketService } from "@/services/socket.js";
-import { StartMessageProducer } from "@/services/kafka.js";
+import { app, httpServer } from "@/init.js";
+import express from "express";
+import { configDotenv } from "dotenv";
+import cors from "cors";
+import { ErrorHandlerMiddleware } from "./middlewares/error-handler.js";
+import { MessageRouter } from "@/routes/message.js";
 
-dotenv.config();
+configDotenv({ quiet: true });
 
-function init() {
-  const httpServer = http.createServer(SetupServer);
+app.use(
+  cors({
+    origin: [`${process.env.FRONTEND_URL}`],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["*"],
+    credentials: true,
+  })
+);
 
-  const socketService = new SocketService();
-  socketService.get_io().attach(httpServer);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(cookieParser());
 
-  StartMessageProducer();
+app.use("/api/messages", MessageRouter);
 
-  const PORT = process.env.PORT || 4000;
-  httpServer.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
+app.use(ErrorHandlerMiddleware);
 
-  socketService.initListeners();
-}
-
-init();
+const PORT = process.env.PORT || 4000;
+httpServer.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

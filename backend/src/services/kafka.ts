@@ -29,7 +29,9 @@ const ProduceMessage = async (message: string) => {
   return true;
 };
 
-const StartMessageProducer = async () => {
+const StartMessageConsumer = async () => {
+  console.log("Starting Kafka Consumer !");
+
   const consumer = kafka.consumer({ groupId: "default" });
   await consumer.connect();
   await consumer.subscribe({ topic: "MESSAGES", fromBeginning: true });
@@ -62,4 +64,4 @@ const StartMessageProducer = async () => {
   });
 };
 
-export { ProduceMessage, StartMessageProducer };
+export { ProduceMessage, StartMessageConsumer };
