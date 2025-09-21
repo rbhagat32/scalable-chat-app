@@ -86,6 +86,10 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
     };
 
     fetchMessages();
+
+    return () => {
+      setMessages([]);
+    };
   }, []);
 
   return (
