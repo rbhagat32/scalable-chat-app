@@ -8,7 +8,7 @@ services:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   postgres:
     image: postgres
@@ -23,7 +23,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U raghav -d scalable-chat"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   kafka:
     image: bitnami/kafka
@@ -48,7 +48,7 @@ services:
         ]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 10
       start_period: 30s
 
   backend:
