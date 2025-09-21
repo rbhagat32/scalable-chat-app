@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "npm run lint && tsc && tsc-alias",
-    "dev": "tsx watch src/app.ts",
+    "dev": "nodemon",
     "lint": "eslint src"
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "@types/node": "^24.3.1",
     "eslint": "^9.35.0",
     "globals": "^16.3.0",
+    "nodemon": "^3.1.10",
     "prisma": "^6.15.0",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.20.5",

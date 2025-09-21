@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "up": "docker compose up --watch",
+    "down": "docker compose down --rmi local --remove-orphans && docker image prune -f"
+  }
+}
