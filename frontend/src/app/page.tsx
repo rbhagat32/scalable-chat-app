@@ -1,12 +1,22 @@
 "use client";
 
 import { useSocket } from "@/context/SocketProvider";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 export default function Page() {
   const { sendMessage, messages, loading } = useSocket();
   const [message, setMessage] = useState<string>("");
+
+  const messagesContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Scroll to bottom whenever messages change
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (message.trim() === "") {
@@ -27,20 +37,21 @@ export default function Page() {
         </div>
 
         {/* Chat Messages */}
-        <div className="scrollbar-hide mb-18 flex-1 space-y-3 overflow-y-auto p-4">
+        <div
+          ref={messagesContainerRef}
+          className="scrollbar-hide mb-18 flex-1 space-y-3 p-4"
+        >
           {loading ? (
             <SkeletonLoader />
           ) : (
-            messages.map((msg, index) => {
-              return (
-                <div
-                  key={index}
-                  className="mx-auto w-[280px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
-                >
-                  <p className="text-sm break-words">{msg}</p>
-                </div>
-              );
-            })
+            messages.map((msg, index) => (
+              <div
+                key={index}
+                className="mx-auto w-[280px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
+              >
+                <p className="text-sm break-words">{msg}</p>
+              </div>
+            ))
           )}
         </div>
 
@@ -58,7 +69,7 @@ export default function Page() {
               }}
             />
             <button
-              onClick={() => handleSendMessage()}
+              onClick={handleSendMessage}
               className="cursor-pointer rounded-xl bg-gray-800 p-2.5 text-gray-200 shadow-lg transition-all duration-200 hover:bg-gray-700 hover:shadow-xl active:bg-gray-600"
             >
               <svg
@@ -83,12 +94,10 @@ export default function Page() {
 }
 
 const SkeletonLoader = () => {
-  return [...Array(11)].map((_, index) => {
-    return (
-      <div
-        key={index}
-        className="mx-auto h-9 w-[280px] animate-pulse rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
-      />
-    );
-  });
+  return [...Array(11)].map((_, index) => (
+    <div
+      key={index}
+      className="mx-auto h-9 w-[280px] animate-pulse rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
+    />
+  ));
 };
