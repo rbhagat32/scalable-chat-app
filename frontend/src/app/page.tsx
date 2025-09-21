@@ -10,7 +10,7 @@ export default function Page() {
 
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Scroll to bottom whenever messages change
+  // scroll to bottom
   useEffect(() => {
     const container = messagesContainerRef.current;
     if (container) {
