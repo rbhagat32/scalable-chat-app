@@ -26,7 +26,18 @@
     git clone https://github.com/rbhagat32/scalable-chat-app.git
 ```
 
-2. Start the Development Servers using Docker Compose:
+2. Install Dependencies:
+
+```bash
+    cd frontend
+    npm install
+
+    cd backend
+    npm install
+    npx prisma generate
+```
+
+3. Start the Development Servers using Docker Compose:
 
 ```bash
     cd scalable-chat-app
@@ -34,5 +45,3 @@
 ```
 
 This will start the Backend server (Express) on `http://localhost:4000` and the Frontend server (Next.js) on `http://localhost:3000`.
-
-**_Zero Setup, Just Clone and Code._**

@@ -2,7 +2,7 @@ import { app, httpServer } from "@/init.js";
 import express from "express";
 import { configDotenv } from "dotenv";
 import cors from "cors";
-import { ErrorHandlerMiddleware } from "./middlewares/error-handler.js";
+import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
 import { MessageRouter } from "@/routes/message.js";
 
 configDotenv({ quiet: true });
