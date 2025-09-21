@@ -8,4 +8,8 @@ prisma.$connect().then(() => {
   console.log("Connected to PostgreSQL !");
 });
 
+prisma.$on("error", (e) => {
+  console.error("Prisma error: ", e);
+});
+
 export { prisma };
