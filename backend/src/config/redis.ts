@@ -24,11 +24,11 @@ sub.on("ready", () => {
 });
 
 pub.on("error", (err) => {
-  console.error("Redis Pub Error:", err);
+  console.error("Redis Publisher Error:", err);
 });
 
 sub.on("error", (err) => {
-  console.error("Redis Sub Error:", err);
+  console.error("Redis Subscriber Error:", err);
 });
 
 export { pub, sub };
