@@ -17,8 +17,4 @@ prisma.$on("error", (e) => {
   console.error("Prisma error: ", e);
 });
 
-process.on("beforeExit", async () => {
-  await prisma.$disconnect();
-});
-
 export { prisma };
