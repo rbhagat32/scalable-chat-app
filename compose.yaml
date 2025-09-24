@@ -2,8 +2,8 @@ services:
   redis:
     image: redis
     container_name: redis
-    volumes:
-      - redis_data:/data
+    # volumes:
+    #   - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -38,8 +38,8 @@ services:
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
       - ALLOW_PLAINTEXT_LISTENER=yes
-    volumes:
-      - kafka_data:/bitnami/kafka
+    # volumes:
+    #   - kafka_data:/bitnami/kafka
     healthcheck:
       test:
         [
@@ -123,6 +123,6 @@ services:
       - ./backend:/app
 
 volumes:
-  redis_data:
+  # redis_data:
   postgres_data:
-  kafka_data:
+  # kafka_data:

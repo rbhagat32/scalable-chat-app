@@ -33,8 +33,7 @@ const ProduceMessage = async (message: string) => {
 const StartMessageConsumer = async () => {
   console.log(`[${os.hostname()}] Starting Kafka Consumer !`);
 
-  // Use same group ID so only ONE instance processes each message
-  const consumer = kafka.consumer({ groupId: "message-persistence" });
+  const consumer = kafka.consumer({ groupId: "save-message" });
   await consumer.connect();
   await consumer.subscribe({ topic: "MESSAGES", fromBeginning: true });
 
