@@ -4,6 +4,8 @@ services:
     container_name: redis
     # volumes:
     #   - redis_data:/data
+    volumes:
+      - redis_dump:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -124,5 +126,6 @@ services:
 
 volumes:
   # redis_data:
+  redis_dump:
   postgres_data:
   # kafka_data:

@@ -1,6 +1,6 @@
 {
   "scripts": {
     "up": "docker compose up --scale backend=5 --watch",
-    "down": "docker compose down --rmi local --remove-orphans && docker image prune -f"
+    "down": "docker compose down --rmi local --remove-orphans && docker image prune -f && docker volume rm scalable-chat-app_redis_dump"
   }
 }
