@@ -18,6 +18,8 @@
 
 - Containerization: Docker
 
+- Load Balancing: Nginx
+
 ## Steps to Run the Application locally:
 
 1. Clone the Repository:
