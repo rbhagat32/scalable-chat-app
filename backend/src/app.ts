@@ -4,6 +4,7 @@ import { configDotenv } from "dotenv";
 import cors from "cors";
 import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
 import { MessageRouter } from "@/routes/message.js";
+import { ServerInfoRouter } from "@/routes/server-info.js";
 
 configDotenv({ quiet: true });
 
@@ -18,8 +19,8 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
 
+app.use("/api/server-info", ServerInfoRouter);
 app.use("/api/messages", MessageRouter);
 
 app.use(ErrorHandlerMiddleware);

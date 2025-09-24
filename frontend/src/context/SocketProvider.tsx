@@ -41,6 +41,18 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [messages, setMessages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const fetchServerInfo = useCallback(async () => {
+    try {
+      const res = await fetch(`${SERVER_URL}/api/server-info`);
+      if (!res.ok) throw new Error("Failed to Fetch Server Info !");
+
+      const data = await res.json();
+      console.log("Connected to Server Instance:", data);
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
   const sendMessage: ISocketContext["sendMessage"] = useCallback(
     (msg: string) => {
       console.log(`Sending Message to Server: ${msg}`);
@@ -57,8 +69,15 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const _socket = io(SERVER_URL);
+    const _socket = io(SERVER_URL, {
+      // transports: ["websocket", "polling"],
+      transports: ["websocket"],
+      upgrade: true,
+      rememberUpgrade: true,
+    });
+
     setSocket(_socket);
+    fetchServerInfo();
 
     _socket.on("message", messageReceived);
 

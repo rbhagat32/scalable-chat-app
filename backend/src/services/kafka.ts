@@ -30,16 +30,20 @@ const ProduceMessage = async (message: string) => {
 };
 
 const StartMessageConsumer = async () => {
-  console.log("Starting Kafka Consumer !");
+  const instanceId = process.env.INSTANCE_ID || `backend-${Date.now()}`;
+  console.log(`[${instanceId}] Starting Kafka Consumer !`);
 
-  const consumer = kafka.consumer({ groupId: "default" });
+  // Use same group ID so only ONE instance processes each message
+  const consumer = kafka.consumer({ groupId: "message-persistence" });
   await consumer.connect();
   await consumer.subscribe({ topic: "MESSAGES", fromBeginning: true });
 
   await consumer.run({
     autoCommit: true,
     eachMessage: async ({ message, pause }) => {
-      console.log(`Kafka Consumer received new message: ${message.value?.toString()}`);
+      console.log(
+        `[${instanceId}] Kafka Consumer received new message: ${message.value?.toString()}`
+      );
 
       if (!message.value) return;
 
@@ -50,9 +54,9 @@ const StartMessageConsumer = async () => {
           },
         });
 
-        console.log(`Message saved to database: ${message.value.toString()}`);
+        console.log(`[${instanceId}] Message saved to database: ${message.value.toString()}`);
       } catch (error) {
-        console.error("Error saving message to database:", error);
+        console.error(`[${instanceId}] Error saving message to database:`, error);
 
         pause();
 
