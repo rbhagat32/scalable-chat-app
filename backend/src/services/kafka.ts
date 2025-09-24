@@ -1,5 +1,6 @@
 import { Kafka, type Producer, Partitioners } from "kafkajs";
 import { prisma } from "@/config/prisma.js";
+import os from "os";
 
 const kafka = new Kafka({
   brokers: [`${process.env.KAFKA_BROKER_URL}`],
@@ -30,8 +31,7 @@ const ProduceMessage = async (message: string) => {
 };
 
 const StartMessageConsumer = async () => {
-  const instanceId = process.env.INSTANCE_ID || `backend-${Date.now()}`;
-  console.log(`[${instanceId}] Starting Kafka Consumer !`);
+  console.log(`[${os.hostname()}] Starting Kafka Consumer !`);
 
   // Use same group ID so only ONE instance processes each message
   const consumer = kafka.consumer({ groupId: "message-persistence" });
@@ -42,7 +42,7 @@ const StartMessageConsumer = async () => {
     autoCommit: true,
     eachMessage: async ({ message, pause }) => {
       console.log(
-        `[${instanceId}] Kafka Consumer received new message: ${message.value?.toString()}`
+        `[${os.hostname()}] Kafka Consumer received new message: ${message.value?.toString()}`
       );
 
       if (!message.value) return;
@@ -54,9 +54,9 @@ const StartMessageConsumer = async () => {
           },
         });
 
-        console.log(`[${instanceId}] Message saved to database: ${message.value.toString()}`);
+        console.log(`[${os.hostname()}] Message saved to database: ${message.value.toString()}`);
       } catch (error) {
-        console.error(`[${instanceId}] Error saving message to database:`, error);
+        console.error(`[${os.hostname()}] Error saving message to database:`, error);
 
         pause();
 

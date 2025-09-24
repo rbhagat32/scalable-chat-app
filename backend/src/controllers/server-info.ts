@@ -1,9 +1,10 @@
 import type { Request, Response } from "express";
+import os from "os";
 
 const ServerInfo = (_req: Request, res: Response) => {
-  res.json({
+  res.status(200).json({
     status: "healthy",
-    instanceId: process.env.INSTANCE_ID || "backend-unknown",
+    instanceId: os.hostname(),
     port: process.env.PORT || 4000,
     timestamp: new Date().toLocaleString(),
   });
