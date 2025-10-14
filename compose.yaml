@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: scalable-chat
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U raghav -d scalable-chat"]
       interval: 5s
@@ -20,7 +20,7 @@ services:
     # volumes:
     #   - redis_data:/data
     volumes:
-      - redis_dump:/data
+      - redis-dump:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -126,6 +126,6 @@ services:
 
 volumes:
   # redis_data:
-  redis_dump:
-  postgres_data:
+  redis-dump:
+  postgres-data:
   # kafka_data:
