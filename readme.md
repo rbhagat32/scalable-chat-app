@@ -28,7 +28,7 @@
     git clone https://github.com/rbhagat32/scalable-chat-app.git
 ```
 
-2. Install Dependencies:
+2. Install Dependencies (just to avoid red squiggly lines in VS Code):
 
 ```bash
     cd frontend
