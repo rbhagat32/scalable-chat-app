@@ -14,7 +14,7 @@
 
 - Pub/Sub: Redis
 
-- Message Queue: Kafka
+- Message Broker: Kafka
 
 - Containerization: Docker
 
