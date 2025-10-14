@@ -52,4 +52,4 @@
     docker exec -it scalable-chat-app-backend-1 npx prisma migrate dev --name init
 ```
 
-#### This will start Backend server (Express.js) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555` in Development mode (with Hot-Reloading).
+#### This will start 5 instances of Backend server (Express.js) balanced by Load Balancer (Nginx) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555`.
