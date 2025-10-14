@@ -4,7 +4,7 @@
 
 - Frontend: Next.js
 
-- Backend: Node.js
+- Backend: Express.js
 
 - Database: PostgreSQL
 
