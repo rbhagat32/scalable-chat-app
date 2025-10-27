@@ -47,7 +47,7 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       if (!res.ok) throw new Error("Failed to Fetch Server Info !");
 
       const data = await res.json();
-      console.log("Connected to Server Instance:", data);
+      console.log("Connected to Server:", data);
     } catch (err) {
       console.error(err);
     }
