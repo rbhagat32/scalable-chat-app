@@ -39,7 +39,7 @@ export default function Page() {
         {/* Chat Messages */}
         <div
           ref={messagesContainerRef}
-          className="scrollbar-hide mb-18 flex-1 space-y-3 p-4"
+          className="mb-18 flex-1 space-y-3 overflow-auto p-4"
         >
           {loading ? (
             <SkeletonLoader />

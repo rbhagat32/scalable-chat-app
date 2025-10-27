@@ -1,7 +1,10 @@
 import type { Request, Response, NextFunction } from "express";
 
 export class ErrorHandler extends Error {
-  constructor(public statusCode: number, public message: string) {
+  constructor(
+    public statusCode: number,
+    public message: string
+  ) {
     super(message);
     this.statusCode = statusCode;
   }
