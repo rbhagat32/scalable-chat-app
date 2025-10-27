@@ -2,6 +2,7 @@ import { app, httpServer } from "@/init.js";
 import express from "express";
 import { configDotenv } from "dotenv";
 import cors from "cors";
+import morgan from "morgan";
 import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
 import { MessageRouter } from "@/routes/message.js";
 import { ServerInfoRouter } from "@/routes/server-info.js";
@@ -17,6 +18,7 @@ app.use(
   })
 );
 
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
