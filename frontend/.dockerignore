@@ -8,4 +8,4 @@ compose.yaml
 .git
 .gitignore
 readme.md
-.prettierrc
+prettier.config.js
