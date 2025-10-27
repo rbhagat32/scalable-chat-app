@@ -79,6 +79,8 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+    volumes:
+      - ./backend/prisma/migrations:/app/prisma/migrations
     develop:
       watch:
         - action: sync
@@ -86,6 +88,7 @@ services:
           target: /app
           ignore:
             - node_modules/
+            - prisma/migrations/
         - action: rebuild
           path: package.json
         - action: rebuild

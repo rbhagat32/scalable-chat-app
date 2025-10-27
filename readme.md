@@ -46,10 +46,4 @@
     npm run up
 ```
 
-4. Run Initial Prisma Migration (only when starting for the first time):
-
-```bash
-    docker exec -it scalable-chat-app-backend-1 npx prisma migrate dev --name init
-```
-
 #### This will start 5 instances of Backend server (Express.js) balanced by Load Balancer (Nginx) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555`.
