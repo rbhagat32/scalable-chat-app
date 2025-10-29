@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import { SocketProvider } from "@/context/socket-provider";
+import "@/app/globals.css";
 import { Toaster } from "sonner";
+import { SocketProvider } from "@/context/socket-provider";
 
 export const metadata: Metadata = {
   title: "Scalable Chat App",
