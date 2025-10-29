@@ -12,20 +12,10 @@ import { io, Socket } from "socket.io-client";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-interface SocketProviderProps {
-  children?: ReactNode;
-}
-
 interface ISocketContext {
   sendMessage: (msg: string) => void;
   messages: string[];
   loading: boolean;
-}
-
-interface IMessage {
-  id: string;
-  content: string;
-  createdAt: string;
 }
 
 const SocketContext = createContext<ISocketContext | null>(null);
@@ -38,7 +28,7 @@ const useSocket = () => {
   return state;
 };
 
-const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
+const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
