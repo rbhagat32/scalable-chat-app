@@ -6,7 +6,7 @@ import { SocketProvider } from "@/context/socket-provider";
 export const metadata: Metadata = {
   title: "Scalable Chat App",
   description:
-    "Next.js, Node.js, PostgreSQL, Prisma, Socket.io, Redis, Kafka, Docker",
+    "Next.js, Express.js, PostgreSQL, Prisma, Socket.io, Redis, Kafka, Docker",
 };
 
 export default function RootLayout({

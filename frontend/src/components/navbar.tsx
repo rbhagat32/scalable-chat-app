@@ -6,8 +6,8 @@ export function NavBar() {
       </h1>
 
       <p className="text-center text-xs font-light text-gray-100">
-        Next.js, Node.js, PostgreSQL, Prisma, Socket.io, Redis, Kafka, Docker,
-        Nginx
+        Next.js, Express.js, PostgreSQL, Prisma, Socket.io, Redis, Kafka,
+        Docker, Nginx
       </p>
     </div>
   );
