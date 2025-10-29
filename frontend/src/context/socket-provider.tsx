@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { io, Socket } from "socket.io-client";
+import { api } from "@/lib/axios";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -35,11 +36,10 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
 
   const fetchServerInfo = useCallback(async () => {
     try {
-      const res = await fetch(`${SERVER_URL}/api/server-info`);
-      if (!res.ok) throw new Error("Failed to Fetch Server Info !");
+      const res = await api.get("/api/server-info");
+      if (res.status !== 200) throw new Error("Failed to Fetch Server Info !");
 
-      const data = await res.json();
-      console.log("Connected to Server: ", data);
+      console.log("Connected to Server: ", res.data);
     } catch (err) {
       console.error(err);
     }
@@ -84,11 +84,11 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
     const fetchMessages = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${SERVER_URL}/api/messages`);
-        if (!res.ok) throw new Error("Failed to Fetch Messages !");
+        const response = await api.get<IMessage[]>("/api/messages");
+        if (response.status !== 200)
+          throw new Error("Failed to Fetch Messages !");
 
-        const data: IMessage[] = await res.json();
-        setMessages(data.map((msg) => msg.content));
+        setMessages(response.data.map((msg) => msg.content));
       } catch (err) {
         console.error(err);
       } finally {
