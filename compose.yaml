@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: raghav
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: scalable-chat
+      POSTGRES_DB: scalable-chat-app
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
