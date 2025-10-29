@@ -84,11 +84,10 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
     const fetchMessages = async () => {
       try {
         setLoading(true);
-        const response = await api.get<IMessage[]>("/api/messages");
-        if (response.status !== 200)
-          throw new Error("Failed to Fetch Messages !");
+        const res = await api.get<IMessage[]>("/api/messages");
+        if (res.status !== 200) throw new Error("Failed to Fetch Messages !");
 
-        setMessages(response.data.map((msg) => msg.content));
+        setMessages(res.data.map((msg) => msg.content));
       } catch (err) {
         console.error(err);
       } finally {
