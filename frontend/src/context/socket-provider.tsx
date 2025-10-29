@@ -32,7 +32,9 @@ const SocketContext = createContext<ISocketContext | null>(null);
 
 const useSocket = () => {
   const state = useContext(SocketContext);
-  if (!state) throw new Error("useSocket must be used within a SocketProvider");
+  if (!state)
+    throw new Error("useSocket must be used within a SocketProvider !");
+
   return state;
 };
 
@@ -47,7 +49,7 @@ const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       if (!res.ok) throw new Error("Failed to Fetch Server Info !");
 
       const data = await res.json();
-      console.log("Connected to Server:", data);
+      console.log("Connected to Server: ", data);
     } catch (err) {
       console.error(err);
     }
