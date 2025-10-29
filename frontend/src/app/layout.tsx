@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SocketProvider } from "@/context/SocketProvider";
+import { SocketProvider } from "@/context/socket-provider";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
