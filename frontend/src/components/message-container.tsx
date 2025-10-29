@@ -29,7 +29,7 @@ export function MessageContainer() {
             key={index}
             className="mx-auto w-[300px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
           >
-            <p className="text-sm break-words">{msg}</p>
+            <p className="text-sm break-words">{msg.content}</p>
           </div>
         ))
       )}

@@ -15,7 +15,7 @@ const SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface ISocketContext {
   sendMessage: (msg: string) => void;
-  messages: string[];
+  messages: IMessage[];
   loading: boolean;
 }
 
@@ -31,7 +31,7 @@ const useSocket = () => {
 
 const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchServerInfo = useCallback(async () => {
@@ -49,12 +49,12 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
     (msg: string) => {
       console.log(`Sending Message to Server: ${msg}`);
 
-      if (socket) socket.emit("event:message", { message: msg });
+      if (socket) socket.emit("event:message", { content: msg });
     },
     [socket]
   );
 
-  const messageReceived = useCallback((msg: string) => {
+  const messageReceived = useCallback((msg: IMessage) => {
     console.log("Message Received from Server:", msg);
 
     setMessages((prevMessages) => [...prevMessages, msg]);
@@ -87,7 +87,7 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
         const res = await api.get<IMessage[]>("/api/messages");
         if (res.status !== 200) throw new Error("Failed to Fetch Messages !");
 
-        setMessages(res.data.map((msg) => msg.content));
+        setMessages(res.data);
       } catch (err) {
         console.error(err);
       } finally {

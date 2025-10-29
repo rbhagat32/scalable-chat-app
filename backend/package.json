@@ -24,7 +24,8 @@
     "ioredis": "^5.7.0",
     "kafkajs": "^2.2.4",
     "morgan": "^1.10.1",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
