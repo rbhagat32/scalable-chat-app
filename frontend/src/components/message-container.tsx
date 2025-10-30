@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useSocket } from "@/context/socket-provider";
 import { SkeletonLoader } from "@/components/skeleton-loader";
+import moment from "moment";
 
 export function MessageContainer() {
   const { messages, loading } = useSocket();
@@ -27,9 +28,12 @@ export function MessageContainer() {
         messages.map((msg, index) => (
           <div
             key={index}
-            className="mx-auto w-[300px] rounded-2xl bg-gray-800 px-3 py-2 text-gray-100 shadow-lg"
+            className="mx-auto flex w-[300px] flex-col gap-2 rounded-2xl bg-gray-800 p-4 text-gray-100"
           >
-            <p className="text-sm break-words">{msg.content}</p>
+            <p className="break-words">{msg.content}</p>
+            <p className="text-xs text-zinc-400">
+              {moment(msg.createdAt).format("DD MMM YYYY [at] hh:mm A")}
+            </p>
           </div>
         ))
       )}
