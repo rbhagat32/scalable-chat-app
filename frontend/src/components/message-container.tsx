@@ -12,9 +12,7 @@ export function MessageContainer() {
   // scroll to bottom
   useEffect(() => {
     const container = messagesContainerRef.current;
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
+    if (container) container.scrollTop = container.scrollHeight;
   }, [messages]);
 
   return (
@@ -28,7 +26,7 @@ export function MessageContainer() {
         messages.map((msg, index) => (
           <div
             key={index}
-            className="mx-auto flex w-[300px] flex-col gap-2 rounded-2xl bg-gray-800 p-4 text-gray-100"
+            className="mx-auto flex w-[300px] flex-col gap-2 rounded-2xl bg-gray-800 p-4"
           >
             <p className="break-words">{msg.content}</p>
             <p className="text-xs text-gray-400">

@@ -10,6 +10,7 @@ export function ServerInfo() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // handle click outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
