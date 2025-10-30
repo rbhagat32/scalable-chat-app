@@ -6,7 +6,6 @@ interface IMessage {
 
 interface IServerInfo {
   instanceId: string;
-  port: number;
   status: string;
   timestamp: string;
 }

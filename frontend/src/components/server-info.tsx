@@ -66,9 +66,6 @@ export function ServerInfo() {
               Instance ID: {serverInfo?.instanceId}
             </li>
             <li className="mb-2 rounded-md bg-gray-800 p-2">
-              Port: {serverInfo?.port}
-            </li>
-            <li className="mb-2 rounded-md bg-gray-800 p-2">
               Status: {serverInfo?.status}
             </li>
             <li className="mb-2 rounded-md bg-gray-800 p-2">
