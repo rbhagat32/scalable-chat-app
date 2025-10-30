@@ -4,6 +4,7 @@ import { useSocket } from "@/context/socket-provider";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Info, X } from "lucide-react";
+import moment from "moment";
 
 export function ServerInfo() {
   const { serverInfo } = useSocket();
@@ -70,7 +71,8 @@ export function ServerInfo() {
               Status: {serverInfo?.status}
             </li>
             <li className="mb-2 rounded-md bg-gray-800 p-2">
-              Timestamp: {serverInfo?.timestamp}
+              Timestamp:{" "}
+              {moment(serverInfo?.timestamp).format("DD MMM YYYY [at] hh:mm A")}
             </li>
           </ul>
         </div>

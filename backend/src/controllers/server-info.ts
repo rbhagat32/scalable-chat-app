@@ -5,7 +5,7 @@ const ServerInfo = (_req: Request, res: Response) => {
   res.status(200).json({
     status: "healthy",
     instanceId: os.hostname(),
-    timestamp: new Date().toLocaleString(),
+    timestamp: new Date(),
   });
 };
 

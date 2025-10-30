@@ -7,5 +7,5 @@ interface IMessage {
 interface IServerInfo {
   instanceId: string;
   status: string;
-  timestamp: string;
+  timestamp: Date;
 }
