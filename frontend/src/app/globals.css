@@ -3,19 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgb(24 24 27);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(161 161 170);
-  border-radius: 50px;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -130,4 +117,18 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgb(24 24 27);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(161 161 170);
+  border-radius: 50px;
 }
