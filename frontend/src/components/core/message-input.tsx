@@ -11,6 +11,7 @@ export function MessageInput() {
   const handleSendMessage = () => {
     if (message.trim() === "") {
       toast.error("Cannot send empty message !");
+      setMessage("");
     } else {
       sendMessage(message);
       setMessage("");
