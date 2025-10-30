@@ -20,7 +20,7 @@ export function MessageContainer() {
   return (
     <div
       ref={messagesContainerRef}
-      className="mb-18 flex-1 space-y-3 overflow-auto p-4"
+      className="relative mb-18 flex-1 space-y-3 overflow-auto p-4"
     >
       {loading ? (
         <SkeletonLoader />
@@ -31,7 +31,7 @@ export function MessageContainer() {
             className="mx-auto flex w-[300px] flex-col gap-2 rounded-2xl bg-gray-800 p-4 text-gray-100"
           >
             <p className="break-words">{msg.content}</p>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-gray-400">
               {moment(msg.createdAt).format("DD MMM YYYY [at] hh:mm A")}
             </p>
           </div>

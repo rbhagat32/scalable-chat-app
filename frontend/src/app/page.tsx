@@ -1,3 +1,4 @@
+import { ServerInfo } from "@/components/server-info";
 import { NavBar } from "@/components/navbar";
 import { MessageContainer } from "@/components/message-container";
 import { MessageInput } from "@/components/message-input";
@@ -7,6 +8,7 @@ export default function Page() {
     <div className="flex min-h-screen items-center justify-center bg-black p-4">
       <div className="relative flex h-[750px] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 shadow-2xl">
         <NavBar />
+        <ServerInfo />
         <MessageContainer />
         <MessageInput />
       </div>

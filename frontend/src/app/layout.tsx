@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <SocketProvider>
       <html lang="en">
-        <body className="antialiased">{children}</body>
+        <body className="dark antialiased">{children}</body>
       </html>
       <Toaster richColors position="top-center" />
     </SocketProvider>
