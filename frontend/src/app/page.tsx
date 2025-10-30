@@ -1,7 +1,7 @@
-import { ServerInfo } from "@/components/server-info";
-import { NavBar } from "@/components/navbar";
-import { MessageContainer } from "@/components/message-container";
-import { MessageInput } from "@/components/message-input";
+import { ServerInfo } from "@/components/core/server-info";
+import { NavBar } from "@/components/core/navbar";
+import { MessageContainer } from "@/components/core/message-container";
+import { MessageInput } from "@/components/core/message-input";
 
 export default function Page() {
   return (

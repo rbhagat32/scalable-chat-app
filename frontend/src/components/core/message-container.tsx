@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useSocket } from "@/context/socket-provider";
-import { SkeletonLoader } from "@/components/skeleton-loader";
+import { SkeletonLoader } from "@/components/core/skeleton-loader";
 import moment from "moment";
 
 export function MessageContainer() {
