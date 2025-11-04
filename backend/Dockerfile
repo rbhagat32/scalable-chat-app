@@ -17,4 +17,4 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 
 EXPOSE 4000
-CMD npm start
+CMD npx prisma migrate deploy && npm start

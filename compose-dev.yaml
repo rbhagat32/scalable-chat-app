@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres
+    image: postgres:16
     container_name: postgres
     environment:
       POSTGRES_USER: raghav
@@ -15,7 +15,7 @@ services:
       retries: 10
 
   redis:
-    image: redis
+    image: redis:7
     container_name: redis
     volumes:
       - redis-dump:/data
@@ -26,7 +26,7 @@ services:
       retries: 10
 
   kafka:
-    image: bitnami/kafka
+    image: public.ecr.aws/bitnami/kafka:3.9.0
     container_name: kafka
     environment:
       - KAFKA_ENABLE_KRAFT=yes
