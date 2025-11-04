@@ -12,7 +12,7 @@
     docker run -d --name redis -p 6380:6379 -v redis_data:/data redis
 ```
 
-## Kafka (takes time to start (10-20 sec), see container logs then start backend server):
+## Kafka (takes time to start (20-30 sec), see container logs then start backend server):
 
 ```bash
     docker run -d --name kafka -p 9092:9092 -e KAFKA_ENABLE_KRAFT=yes -e KAFKA_CFG_NODE_ID=1 -e KAFKA_CFG_PROCESS_ROLES=broker,controller -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 -e KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 -e KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 -e KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true -e ALLOW_PLAINTEXT_LISTENER=yes -v kafka_data:/bitnami/kafka bitnami/kafka
