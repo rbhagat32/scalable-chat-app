@@ -17,8 +17,6 @@ services:
   redis:
     image: redis
     container_name: redis
-    # volumes:
-    #   - redis_data:/data
     volumes:
       - redis-dump:/data
     healthcheck:
@@ -40,8 +38,6 @@ services:
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
       - ALLOW_PLAINTEXT_LISTENER=yes
-    # volumes:
-    #   - kafka_data:/bitnami/kafka
     healthcheck:
       test:
         [
@@ -128,7 +124,5 @@ services:
       - backend
 
 volumes:
-  # redis_data:
   redis-dump:
   postgres-data:
-  # kafka_data:
