@@ -53,4 +53,4 @@
     npm run down
 ```
 
-#### This will start 5 instances of Backend server (Express.js) balanced by Load Balancer (Nginx) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555`.
+This will start 5 instances of Backend server (Express.js) balanced by Load Balancer (Nginx) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555`.
