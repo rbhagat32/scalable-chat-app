@@ -67,6 +67,7 @@ services:
       - ./backend/.env
     volumes:
       - ./backend/prisma/migrations:/app/prisma/migrations
+    restart: on-failure
     depends_on:
       redis:
         condition: service_healthy
