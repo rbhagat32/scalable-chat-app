@@ -46,7 +46,7 @@
     npm run dev `OR` npm run prod
 ```
 
-4. Stop the Servers after cleaning up the Containers, Images and Volumes:
+4. Cleanup Containers, Images, Volumes and Stop All Servers:
 
 ```bash
     cd scalable-chat-app
