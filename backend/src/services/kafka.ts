@@ -19,12 +19,12 @@ const CreateKafkaProducer = async () => {
   return producer;
 };
 
-const ProduceMessage = async (message: IMessage) => {
+const ProduceMessage = async (message: IMessage, roomId: string) => {
   const producer = await CreateKafkaProducer();
 
   await producer.send({
     topic: "MESSAGES",
-    messages: [{ key: `message-${Date.now()}`, value: JSON.stringify(message) }],
+    messages: [{ key: `message-${roomId}`, value: JSON.stringify(message) }],
   });
 
   return true;

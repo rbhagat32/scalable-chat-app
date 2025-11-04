@@ -34,7 +34,7 @@ class SocketService {
         };
 
         io.emit("message", message);
-        await ProduceMessage(message);
+        await ProduceMessage(message, "ROOM_GLOBAL");
       });
     });
   }
