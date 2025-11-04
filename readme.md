@@ -39,11 +39,18 @@
     npx prisma generate
 ```
 
-3. Start the Development Servers using Docker Compose:
+3. Start the Dev/Prod Servers using Docker Compose:
 
 ```bash
     cd scalable-chat-app
     npm run dev `OR` npm run prod
+```
+
+4. Stop the Servers after cleaning up the Containers, Images and Volumes:
+
+```bash
+    cd scalable-chat-app
+    npm run down
 ```
 
 #### This will start 5 instances of Backend server (Express.js) balanced by Load Balancer (Nginx) on `http://localhost:4000`, Frontend server (Next.js) on `http://localhost:3000`, and Prisma Studio on `http://localhost:5555`.
