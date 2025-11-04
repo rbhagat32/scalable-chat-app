@@ -63,11 +63,10 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-    expose:
-      - "4000"
-      - "5555"
     env_file:
       - ./backend/.env
+    volumes:
+      - ./backend/prisma/migrations:/app/prisma/migrations
     depends_on:
       redis:
         condition: service_healthy
@@ -75,8 +74,6 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
-    volumes:
-      - ./backend/prisma/migrations:/app/prisma/migrations
     develop:
       watch:
         - action: sync
