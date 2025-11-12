@@ -9,7 +9,8 @@ import {
   type ReactNode,
 } from "react";
 import { io, Socket } from "socket.io-client";
-import { api } from "@/lib/axios";
+import { api } from "@/utils/axios";
+import { useUser } from "./user-provider";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -22,19 +23,12 @@ interface ISocketContext {
 
 const SocketContext = createContext<ISocketContext | null>(null);
 
-const useSocket = () => {
-  const state = useContext(SocketContext);
-  if (!state)
-    throw new Error("useSocket must be used within a SocketProvider !");
-
-  return state;
-};
-
 const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [serverInfo, setServerInfo] = useState<IServerInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const { user } = useUser();
 
   const fetchServerInfo = useCallback(async () => {
     try {
@@ -49,9 +43,10 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
 
   const sendMessage: ISocketContext["sendMessage"] = useCallback(
     (msg: string) => {
-      if (socket) socket.emit("event:message", { content: msg });
+      if (socket && user?.id)
+        socket.emit("event:message", { content: msg, userId: user.id });
     },
-    [socket]
+    [socket, user]
   );
 
   const messageReceived = useCallback((msg: IMessage) => {
@@ -60,7 +55,6 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const _socket = io(SERVER_URL, {
-      // transports: ["websocket", "polling"],
       transports: ["websocket"],
       upgrade: true,
       rememberUpgrade: true,
@@ -69,10 +63,10 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
     setSocket(_socket);
     fetchServerInfo();
 
-    _socket.on("message", messageReceived);
+    _socket.on("emit:message", messageReceived);
 
     return () => {
-      _socket.off("message", messageReceived);
+      _socket.off("emit:message", messageReceived);
       _socket.disconnect();
       setSocket(null);
     };
@@ -107,6 +101,14 @@ const SocketProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
       {children}
     </SocketContext.Provider>
   );
+};
+
+const useSocket = () => {
+  const state = useContext(SocketContext);
+  if (!state)
+    throw new Error("useSocket must be used within a SocketProvider !");
+
+  return state;
 };
 
 export { SocketProvider, useSocket };

@@ -1,5 +1,6 @@
 import { Kafka, type Producer, Partitioners } from "kafkajs";
 import { prisma } from "@/config/prisma.js";
+import type { IMessage } from "@/types/types.js";
 
 const kafka = new Kafka({
   brokers: [`${process.env.KAFKA_BROKER_URL}`],
@@ -43,10 +44,18 @@ const StartMessageConsumer = async () => {
       try {
         const parsedMessage: IMessage = JSON.parse(message.value?.toString());
 
+        if (!parsedMessage.userId) {
+          console.warn("Received message without userId:", parsedMessage);
+          return;
+        }
+
         await prisma.message.create({
           data: {
             id: parsedMessage.id,
             content: parsedMessage.content,
+            user: {
+              connect: { id: parsedMessage.userId },
+            },
             createdAt: parsedMessage.createdAt,
           },
         });

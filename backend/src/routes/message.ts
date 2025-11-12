@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { GetAllMessages } from "@/controllers/message.js";
+import { getAllMessages } from "@/controllers/message.js";
+import { isLoggedIn } from "@/middlewares/auth.js";
 
 const router = Router();
 
-router.get("/", GetAllMessages);
+router.get("/", isLoggedIn, getAllMessages);
 
 export { router as MessageRouter };

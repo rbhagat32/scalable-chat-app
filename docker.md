@@ -3,7 +3,7 @@
 ## Postgres:
 
 ```bash
-    docker run -d --name postgres -p 5430:5432 -e POSTGRES_USER=raghav -e POSTGRES_PASSWORD=password -e POSTGRES_DB=scalable-chat-app -v postgres_data:/var/lib/postgresql/data postgres
+    docker run -d --name postgres -p 5430:5432 -e POSTGRES_USER=raghav -e POSTGRES_PASSWORD=password -e POSTGRES_DB=default -v postgres_data:/var/lib/postgresql/data postgres
 ```
 
 ## Redis:
@@ -22,7 +22,7 @@
 
 ```bash
     docker exec -it postgres bash
-    psql -U raghav -d scalable-chat-app
+    psql -U raghav -d default
     select * from messages;
 ```
 

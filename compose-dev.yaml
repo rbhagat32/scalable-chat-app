@@ -5,11 +5,11 @@ services:
     environment:
       POSTGRES_USER: raghav
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: scalable-chat-app
+      POSTGRES_DB: default
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U raghav -d scalable-chat-app"]
+      test: ["CMD-SHELL", "pg_isready -U raghav -d default"]
       interval: 5s
       timeout: 5s
       retries: 10

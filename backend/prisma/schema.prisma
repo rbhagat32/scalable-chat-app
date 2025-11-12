@@ -7,9 +7,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+
+  avatarId  String? @map("avatar_id")
+  avatarUrl String? @map("avatar_url")
+
+  messages Message[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
 model Message {
-  id        String   @id @default(uuid())
-  content   String
+  id      String @id @default(uuid())
+  content String
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("messages")

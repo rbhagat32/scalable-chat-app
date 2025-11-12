@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { ServerInfo } from "@/controllers/server-info.js";
+import { serverInfo } from "@/controllers/server-info.js";
 
 const router = Router();
 
-router.get("/", ServerInfo);
+router.get("/", serverInfo);
 
 export { router as ServerInfoRouter };

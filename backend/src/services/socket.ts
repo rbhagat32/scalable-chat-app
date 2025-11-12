@@ -3,6 +3,7 @@ import { createAdapter } from "@socket.io/redis-adapter";
 import { pub, sub } from "@/config/redis.js";
 import { ProduceMessage } from "@/services/kafka.js";
 import { v4 as uuid } from "uuid";
+import type { IMessage } from "@/types/types.js";
 
 class SocketService {
   private _io: Server;
@@ -26,16 +27,20 @@ class SocketService {
     io.on("connect", (socket) => {
       console.log(`New Socket Connected: ${socket.id}`);
 
-      socket.on("event:message", async ({ content }: { content: string }) => {
-        const message: IMessage = {
-          id: uuid(),
-          content,
-          createdAt: new Date(),
-        };
+      socket.on(
+        "event:message",
+        async ({ content, userId }: { content: string; userId: string }) => {
+          const message: IMessage = {
+            id: uuid(),
+            content,
+            userId,
+            createdAt: new Date(),
+          };
 
-        io.emit("message", message);
-        await ProduceMessage(message, "ROOM_GLOBAL");
-      });
+          io.emit("emit:message", message);
+          await ProduceMessage(message, "GLOBAL");
+        }
+      );
     });
   }
 
