@@ -3,7 +3,8 @@ import { createAdapter } from "@socket.io/redis-adapter";
 import { pub, sub } from "@/config/redis.js";
 import { ProduceMessage } from "@/services/kafka.js";
 import { v4 as uuid } from "uuid";
-import type { IMessage } from "@/types/types.js";
+import type { IMessage, IUser } from "@/types/types.js";
+import { prisma } from "@/config/prisma.js";
 
 class SocketService {
   private _io: Server;
@@ -30,10 +31,13 @@ class SocketService {
       socket.on(
         "event:message",
         async ({ content, userId }: { content: string; userId: string }) => {
+          const user: IUser | null = await prisma.user.findUnique({ where: { id: userId } });
+
           const message: IMessage = {
             id: uuid(),
             content,
             userId,
+            user,
             createdAt: new Date(),
           };
 

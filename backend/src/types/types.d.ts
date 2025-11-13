@@ -10,7 +10,7 @@ export interface IUser {
   password: string;
   avatarId: string | null;
   avatarUrl: string | null;
-  messages: IMessage[];
+  messages?: IMessage[];
   createdAt: Date;
 }
 
@@ -18,6 +18,7 @@ export interface IMessage {
   id: string;
   content: string;
   userId: string;
+  user: IUser | null;
   createdAt: Date;
 }
 
