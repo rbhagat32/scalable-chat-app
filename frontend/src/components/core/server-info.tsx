@@ -50,7 +50,7 @@ export function ServerInfo() {
               size="icon"
               variant="ghost"
               onClick={() => setIsOpen(false)}
-              className="size-6 bg-gray-800 hover:bg-gray-900"
+              className="size-7 bg-gray-800 hover:bg-gray-900"
             >
               <X className="size-4" />
             </Button>
