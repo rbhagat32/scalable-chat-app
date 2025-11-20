@@ -1,13 +1,13 @@
 interface CookieOptionsTypes {
   httpOnly: boolean;
   secure: boolean;
-  sameSite: "none" | "strict" | "lax";
+  sameSite: "None" | "Strict" | "Lax";
   expires: Date;
 }
 
 export const cookieOptions: CookieOptionsTypes = {
   httpOnly: true,
   secure: true,
-  sameSite: "none",
+  sameSite: "Strict",
   expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 15),
 };
