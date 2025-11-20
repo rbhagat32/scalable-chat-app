@@ -13,7 +13,7 @@ class SocketService {
     this._io = new Server({
       cors: {
         origin: process.env.FRONTEND_URL,
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allowedHeaders: ["*"],
         credentials: true,
       },
