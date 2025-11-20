@@ -38,7 +38,7 @@ export function MessageContainer() {
             </div>
 
             <Image
-              src={msg.user?.avatarUrl || "/vercel.svg"}
+              src={msg.user?.avatarUrl || "/placeholder.jpeg"}
               alt={msg.user?.avatarId || "Sender Avatar"}
               width={480}
               height={480}
