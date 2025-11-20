@@ -31,8 +31,8 @@ export function MessageContainer() {
           >
             <div>
               <p className="break-words">{msg.content}</p>
-              <p className="text-xs text-gray-400">{msg.user?.username}</p>
-              <p className="text-xs text-gray-400">
+              <p className="mt-1 text-xs text-gray-400">{msg.user?.username}</p>
+              <p className="mt-1 text-xs text-gray-400">
                 {moment(msg.createdAt).format("DD MMM YYYY [at] hh:mm A")}
               </p>
             </div>
