@@ -42,7 +42,7 @@ export function MessageContainer() {
               alt={msg.user?.avatarId || "Sender Avatar"}
               width={480}
               height={480}
-              className="size-14 rounded-full border object-cover"
+              className="size-12 rounded-full border object-cover"
             />
           </div>
         ))
