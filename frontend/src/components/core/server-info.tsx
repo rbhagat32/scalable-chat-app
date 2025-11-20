@@ -34,7 +34,7 @@ export function ServerInfo() {
   }, [isOpen]);
 
   return (
-    <div className="absolute top-11 right-1.5 z-50">
+    <div className="absolute top-1.5 right-1.5 z-50">
       {!isOpen && (
         <Button
           size="icon"
