@@ -34,10 +34,10 @@ export function MessageInput() {
         />
         <button
           onClick={handleSendMessage}
-          className="cursor-pointer rounded-xl bg-gray-800 p-2.5 text-gray-200 shadow-lg transition-all duration-200 hover:bg-gray-700 hover:shadow-xl active:bg-gray-600"
+          className="cursor-pointer rounded-xl bg-gray-800 p-3 text-gray-200 shadow-lg transition-all duration-200 hover:bg-gray-700 hover:shadow-xl active:bg-gray-600"
         >
           <svg
-            className="h-4 w-4"
+            className="size-4"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
