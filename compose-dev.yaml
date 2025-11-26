@@ -99,8 +99,6 @@ services:
       - "3000:3000"
     env_file:
       - ./frontend/.env
-    depends_on:
-      - nginx
     develop:
       watch:
         - action: sync
