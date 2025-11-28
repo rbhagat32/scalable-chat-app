@@ -1,20 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/generated/prisma/client.js";
+import { PrismaPg } from "@prisma/adapter-pg";
+import "dotenv/config";
 
-const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
-});
-
-prisma
-  .$connect()
-  .then(() => {
-    console.log("Connected to PostgreSQL !");
-  })
-  .catch((e) => {
-    console.error("Error connecting to PostgreSQL: ", e);
-  });
-
-prisma.$on("error", (e) => {
-  console.error("Prisma error: ", e);
-});
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 export { prisma };
+export default prisma;

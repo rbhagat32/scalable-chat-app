@@ -1,9 +1,10 @@
-import { Kafka, type Producer, Partitioners } from "kafkajs";
 import { prisma } from "@/config/prisma.js";
 import type { IMessage } from "@/types/types.js";
+import { Kafka, Partitioners, type Producer } from "kafkajs";
 
 const kafka = new Kafka({
   brokers: [`${process.env.KAFKA_BROKER_URL}`],
+  logCreator: () => () => {},
 });
 
 let producer: Producer | null = null;

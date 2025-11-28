@@ -90,9 +90,11 @@ services:
             - node_modules/
             - prisma/migrations/
         - action: rebuild
-          path: package.json
+          path: ./backend/package.json
         - action: rebuild
-          path: prisma/schema.prisma
+          path: ./backend/.env
+        - action: rebuild
+          path: ./backend/prisma/schema.prisma
 
   frontend:
     build:
@@ -111,7 +113,7 @@ services:
           ignore:
             - node_modules/
         - action: rebuild
-          path: package.json
+          path: ./frontend/package.json
 
   prisma-studio:
     image: node:20-alpine
@@ -121,7 +123,7 @@ services:
       - ./backend:/app
     command: sh -c "npx prisma studio"
     ports:
-      - "5555:5555"
+      - "51212:51212"
     depends_on:
       - backend
 

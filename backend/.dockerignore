@@ -1,11 +1,19 @@
+# Dependency directories
 node_modules
 dist
-.env
-Dockerfile
-Dockerfile.dev
-.dockerignore
-compose.yaml
+
+# Git & IDE
 .git
 .gitignore
+.vscode
 readme.md
 .prettierrc
+
+# Docker configs
+.dockerignore
+Dockerfile*
+compose.*.yaml
+docker-compose.\*.yaml
+
+# Misc
+\*.log

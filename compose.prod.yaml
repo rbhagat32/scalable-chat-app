@@ -68,7 +68,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     env_file:
       - ./backend/.env
     volumes:
@@ -85,7 +85,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
       args:
         NEXT_PUBLIC_BACKEND_URL: http://localhost:4000
     container_name: frontend
