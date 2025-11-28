@@ -84,8 +84,7 @@ function UserProvider({ children }: { children: ReactNode }) {
     try {
       const res = await api.get<IUser>("/api/auth/get-user");
       setUser(res.data);
-    } catch (err) {
-      console.error(err);
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
