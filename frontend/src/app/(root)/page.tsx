@@ -9,8 +9,8 @@ export default function Page() {
     <div className="flex min-h-screen items-center justify-center bg-black px-4">
       <div className="relative flex h-[780px] w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 shadow-2xl">
         <Navbar />
-        <LogoutButton />
         <ServerInfo />
+        <LogoutButton />
         <MessageContainer />
         <MessageInput />
       </div>
