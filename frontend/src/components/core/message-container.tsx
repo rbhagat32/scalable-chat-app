@@ -26,12 +26,12 @@ export function MessageContainer() {
       {loading ? (
         <SkeletonLoader />
       ) : (
-        messages.map((msg, index) => (
+        messages.map((msg) => (
           <div
-            key={index}
+            key={msg.id}
             className="mx-auto flex w-[380px] items-center justify-between gap-2 rounded-2xl border-2 bg-gray-800 px-10 py-4"
           >
-            <div>
+            <div className="flex min-w-0 flex-col">
               <p className="break-words">{msg.content}</p>
               <p
                 className={`mt-1 text-xs ${msg.userId === user?.id ? "text-blue-400" : "text-gray-400"}`}
@@ -43,13 +43,15 @@ export function MessageContainer() {
               </p>
             </div>
 
-            <Image
-              src={msg.user?.avatarUrl || "/placeholder.jpeg"}
-              alt={msg.user?.avatarId || "Sender Avatar"}
-              width={480}
-              height={480}
-              className="size-12 rounded-full border object-cover"
-            />
+            <div className="size-12 shrink-0 overflow-hidden rounded-full border">
+              <Image
+                src={msg.user?.avatarUrl || "/placeholder.jpeg"}
+                alt={msg.user?.avatarId || "Sender Avatar"}
+                width={480}
+                height={480}
+                className="size-full object-cover"
+              />
+            </div>
           </div>
         ))
       )}
