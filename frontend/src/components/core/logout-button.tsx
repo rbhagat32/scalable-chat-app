@@ -8,7 +8,7 @@ export function LogoutButton() {
   const { logout } = useUser();
 
   return (
-    <div className="absolute top-11 right-1.5 z-50">
+    <div className="absolute top-11 right-1.5 z-40">
       <Button
         size="icon"
         variant="secondary"
