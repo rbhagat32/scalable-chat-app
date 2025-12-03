@@ -2,11 +2,13 @@
 
 import { SkeletonLoader } from "@/components/core/skeleton-loader";
 import { useSocket } from "@/context/socket-provider";
+import { useUser } from "@/context/user-provider";
 import moment from "moment";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export function MessageContainer() {
+  const { user } = useUser();
   const { messages, loading } = useSocket();
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -27,11 +29,15 @@ export function MessageContainer() {
         messages.map((msg, index) => (
           <div
             key={index}
-            className="mx-auto flex w-[380px] items-center justify-between gap-2 rounded-2xl bg-gray-800 px-10 py-4"
+            className="mx-auto flex w-[380px] items-center justify-between gap-2 rounded-2xl border-2 bg-gray-800 px-10 py-4"
           >
             <div>
               <p className="break-words">{msg.content}</p>
-              <p className="mt-1 text-xs text-gray-400">{msg.user?.username}</p>
+              <p
+                className={`mt-1 text-xs ${msg.userId === user?.id ? "text-blue-400" : "text-gray-400"}`}
+              >
+                {msg.user?.username}
+              </p>
               <p className="mt-1 text-xs text-gray-400">
                 {moment(msg.createdAt).format("DD MMM YYYY [at] hh:mm A")}
               </p>
