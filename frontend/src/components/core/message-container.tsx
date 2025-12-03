@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useSocket } from "@/context/socket-provider";
 import { SkeletonLoader } from "@/components/core/skeleton-loader";
+import { useSocket } from "@/context/socket-provider";
 import moment from "moment";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export function MessageContainer() {
   const { messages, loading } = useSocket();

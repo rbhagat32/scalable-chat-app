@@ -1,8 +1,8 @@
-import type { NextFunction, Response } from "express";
-import type { RequestWithUser } from "@/types/types.js";
-import jwt from "jsonwebtoken";
 import { prisma } from "@/config/prisma.js";
 import { cookieOptions } from "@/constants/cookie-options.js";
+import type { RequestWithUser } from "@/types/types.js";
+import type { NextFunction, Response } from "express";
+import jwt from "jsonwebtoken";
 
 interface JwtPayloadTypes {
   userId: string;

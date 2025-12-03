@@ -1,14 +1,13 @@
 import { app, httpServer } from "@/init.js";
-import express from "express";
-import { configDotenv } from "dotenv";
-import cors from "cors";
-import { v2 as cloudinary } from "cloudinary";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
 import { ErrorHandlerMiddleware } from "@/middlewares/error-handler.js";
-import { ServerInfoRouter } from "@/routes/server-info.js";
 import { AuthRouter } from "@/routes/auth.js";
 import { MessageRouter } from "@/routes/message.js";
+import { ServerInfoRouter } from "@/routes/server-info.js";
+import { v2 as cloudinary } from "cloudinary";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import { configDotenv } from "dotenv";
+import express from "express";
 
 configDotenv({ quiet: true });
 
@@ -27,7 +26,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

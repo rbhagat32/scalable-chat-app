@@ -1,6 +1,6 @@
-import { Router } from "express";
 import { getAllMessages } from "@/controllers/message.js";
 import { isLoggedIn } from "@/middlewares/auth.js";
+import { Router } from "express";
 
 const router = Router();
 

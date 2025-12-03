@@ -33,6 +33,19 @@ const ProduceMessage = async (message: IMessage, roomId: string) => {
 };
 
 const StartMessageConsumer = async () => {
+  // create topic if it doesn't exist
+  const admin = kafka.admin();
+  await admin.connect();
+  const topics = await admin.listTopics();
+
+  if (!topics.includes("MESSAGES")) {
+    await admin.createTopics({
+      topics: [{ topic: "MESSAGES", numPartitions: 1 }],
+    });
+  }
+  await admin.disconnect();
+
+  // start consumer to save messages to database
   const consumer = kafka.consumer({ groupId: "save-message" });
   await consumer.connect();
   await consumer.subscribe({ topic: "MESSAGES", fromBeginning: true });

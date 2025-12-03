@@ -1,10 +1,10 @@
 "use client";
 
-import { useSocket } from "@/context/socket-provider";
-import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useSocket } from "@/context/socket-provider";
 import { Info, X } from "lucide-react";
 import moment from "moment";
+import { useEffect, useRef, useState } from "react";
 
 export function ServerInfo() {
   const { serverInfo } = useSocket();

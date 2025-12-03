@@ -1,5 +1,5 @@
-import { Router } from "express";
 import { serverInfo } from "@/controllers/server-info.js";
+import { Router } from "express";
 
 const router = Router();
 

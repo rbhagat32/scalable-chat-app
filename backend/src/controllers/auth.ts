@@ -1,12 +1,12 @@
-import type { Request, Response } from "express";
-import { TryCatch } from "@/utils/try-catch.js";
-import { ErrorHandler } from "@/middlewares/error-handler.js";
 import { prisma } from "@/config/prisma.js";
-import bcrypt from "bcrypt";
-import { generateToken } from "@/utils/generate-token.js";
 import { cookieOptions } from "@/constants/cookie-options.js";
+import { ErrorHandler } from "@/middlewares/error-handler.js";
 import type { FileProps, RequestWithUser } from "@/types/types.js";
 import { uploadToCloudinary } from "@/utils/cloudinary.js";
+import { generateToken } from "@/utils/generate-token.js";
+import { TryCatch } from "@/utils/try-catch.js";
+import bcrypt from "bcrypt";
+import type { Request, Response } from "express";
 
 const signUp = TryCatch(async (req: Request, res: Response) => {
   const { username, password } = req.body;
@@ -80,4 +80,4 @@ const getLoggedInUser = TryCatch(async (req: RequestWithUser, res: Response) => 
   return res.status(200).json(user);
 });
 
-export { signUp, login, logout, getLoggedInUser };
+export { getLoggedInUser, login, logout, signUp };

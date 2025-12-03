@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { SocketProvider } from "@/context/socket-provider";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Scalable Chat App",

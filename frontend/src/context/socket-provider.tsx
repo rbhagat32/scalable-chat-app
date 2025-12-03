@@ -1,5 +1,6 @@
 "use client";
 
+import { api } from "@/utils/axios";
 import {
   createContext,
   useCallback,
@@ -9,7 +10,6 @@ import {
   type ReactNode,
 } from "react";
 import { io, Socket } from "socket.io-client";
-import { api } from "@/utils/axios";
 import { useUser } from "./user-provider";
 
 const SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL;

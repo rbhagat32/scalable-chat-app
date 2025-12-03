@@ -1,10 +1,10 @@
-import { Server } from "socket.io";
-import { createAdapter } from "@socket.io/redis-adapter";
+import { prisma } from "@/config/prisma.js";
 import { pub, sub } from "@/config/redis.js";
 import { ProduceMessage } from "@/services/kafka.js";
-import { v4 as uuid } from "uuid";
 import type { IMessage, IUser } from "@/types/types.js";
-import { prisma } from "@/config/prisma.js";
+import { createAdapter } from "@socket.io/redis-adapter";
+import { Server } from "socket.io";
+import { v4 as uuid } from "uuid";
 
 class SocketService {
   private _io: Server;

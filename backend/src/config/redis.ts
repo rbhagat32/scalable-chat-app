@@ -1,5 +1,5 @@
-import Redis from "ioredis";
 import { configDotenv } from "dotenv";
+import Redis from "ioredis";
 
 configDotenv({ quiet: true });
 

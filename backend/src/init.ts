@@ -1,8 +1,8 @@
-import http from "http";
-import express from "express";
-import { configDotenv } from "dotenv";
-import { SocketService } from "@/services/socket.js";
 import { StartMessageConsumer } from "@/services/kafka.js";
+import { SocketService } from "@/services/socket.js";
+import { configDotenv } from "dotenv";
+import express from "express";
+import http from "http";
 
 configDotenv({ quiet: true });
 

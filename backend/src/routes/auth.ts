@@ -1,7 +1,7 @@
-import { Router } from "express";
-import { signUp, login, logout, getLoggedInUser } from "@/controllers/auth.js";
 import { multerUpload } from "@/config/multer.js";
+import { getLoggedInUser, login, logout, signUp } from "@/controllers/auth.js";
 import { isLoggedIn } from "@/middlewares/auth.js";
+import { Router } from "express";
 
 const router = Router();
 
